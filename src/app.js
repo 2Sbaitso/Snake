@@ -1,6 +1,7 @@
 import XpManager from './class/XpManager.js';
 import Map from './class/Map.js';
-import glbVar from './other/global.js';
+import glb from './other/global.js';
+import { getRandomInt } from './other/utils.js';
 
 document.addEventListener("DOMContentLoaded", function(event) { 
     const snake = new Snake();
@@ -10,12 +11,12 @@ class Snake {
     constructor (){
         this.xpManager = new XpManager(document.getElementById('progress'));
         this.overlay = new Overlay(document.getElementById('app'))
-        this.map = new Map(document.getElementById('app'), glbVar.cellPerLine, this.overlay, glbVar.startLevel, this.xpManager);
+        this.map = new Map(document.getElementById('app'), glb.cellPerLine, this.overlay, glb.startLevel, this.xpManager);
         this.startGame()
     }
     /* SETUP THE SNAKE AT CENTER & INIT THE INTERVAL MOVEMENT*/
     startGame() {
-        this.map.activeCellByIndex((glbVar.cellPerLine*glbVar.cellPerLine) / 2, glbVar.cellTypeEnum.head)
+        this.map.activeCellByIndex((glb.cellPerLine*glb.cellPerLine) / 2, glb.cellTypeEnum.head)
         this.initKeyDown()
         this.map.startIntervalMovement();
     }
@@ -130,8 +131,8 @@ class Overlay {
     -> messages [] Array of string
     */
     show(messages){
-        var marginLeft = (document.getElementById('app').offsetWidth * .3) / (utils.getRandomInt(10) + 1);
-        var marginTop = (document.getElementById('app').offsetHeight) / (utils.getRandomInt(10) + 3);
+        var marginLeft = (document.getElementById('app').offsetWidth * .3) / (getRandomInt(10) + 1);
+        var marginTop = (document.getElementById('app').offsetHeight) / (getRandomInt(10) + 3);
         marginTop = messages.length > 2 ? Math.floor(marginTop * 0.75) : marginTop;
         messages.forEach((message, i) => this.createMessage(message, i, marginTop, marginLeft));
         document.body.appendChild(this.template);
@@ -149,26 +150,4 @@ class Overlay {
         })
     }
 
-}
-
-var utils = {
-    getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    },
-    getRandomNoneCell(map){
-        var busyCell = map.cells.filter(cell => cell.template.innerHTML !== "").map(cell => cell.index);
-        var randomNoneCell = -1;
-        for (let index = 0; randomNoneCell === -1; index++) {
-            let randomCell = utils.getRandomInt(map.numberOfCellPerLine*map.numberOfCellPerLine)
-            if(!busyCell.includes(randomCell)){
-                randomNoneCell = randomCell
-            }else{
-                console.log('FOUND CELL ALREADY USE', randomCell)
-            }
-        }
-        return randomNoneCell
-    },
-    getHexaRandomColor(){
-        return '#' + Math.floor(Math.random() * 16777215).toString(16);
-    }
 }
