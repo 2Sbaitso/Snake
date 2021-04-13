@@ -40,11 +40,11 @@ export default class XpManager{
         this.levels.forEach((xp, i) => {
             if(i === 0){
                 if(this.levels[0] > this.currentXp){
-                    console.log('LEVEL 0');
+                    //console.log('LEVEL 0');
                 }
             }
             else if(xp < this.currentXp && this.levels[i+1] > this.currentXp){
-                console.log('found correct level', i);
+                console.log('found correct level', i+1);
             }
         })
     }
