@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&display=swap');
+*{ 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+body, html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: rgb(255, 255, 255);
+    font-family: Avenir;
+    background-color: black;
+}
+#app{
+    height: 100%;
+    border-left: #fff 2px solid;
+    border-right: #fff 2px solid;
+    max-width: 100vh;
+    max-height: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+#app > div{
+    position: absolute;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#app > div > span{
+    opacity: .4;
+}
+span.small{
+    font-size: 12px;
+}
+
+.nocturne__vision  > div:nth-child(odd):after{
+    background-color: rgba(255,255,255,0.08)!important;
+    content: ' ';
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    position: absolute;
+    /*animation: nocturneVision ease-in-out 5s forwards;*/
+}
+
+.pulse{
+    transform: scale(1.5);
+	animation: pulse 2s infinite;
+    border-radius: 100px;
+    height: 100%;
+    width: 100%;
+}
+#overlay-container{
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vh;
+    display: block;
+    font-family: 'Dela Gothic One';
+    font-size: 5vh;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+#overlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+#overlay #overlay-container .message-container{
+    display: flex;
+    opacity: 0;
+    animation: overlayMessage 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+#overlay #overlay-container.out-message .message-container{
+    animation: overlayMessageOut 0.3s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
+    opacity: 1;
+    transform: scale(1) skew( 0.06turn , -14deg);
+}
+mark{
+    padding-left: 10px;
+    padding-right: 12px;
+}
+.flash{
+    animation: flashInfinite 1s infinite;
+}
+.head__cell, .end-tail__cell, .tail__cell{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(72, 93, 244);
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    z-index: 1;
+}
+.head__cell{
+    animation-duration: .15s;
+}
+.end-tail__cell{
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+    animation-name: endTailFlow;
+}
+.tail__cell{ }
+
+.clip-path-left-animation{
+    animation: clipPathLeftCome 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    opacity: 0;
+    animation-delay: 800ms;
+}
+.clip-path-left-animation mark{
+    background-color: none;
+    color: white;
+    background-color: #08AEEA;
+    background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+}
+#progress{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+#progress .progress__container{
+    margin-left: auto;
+    margin-right: auto;
+    height: 5px;
+    width: 100vh;
+    overflow: hidden;
+}
+#progress .progress__bar{
+    height: 100%;
+    transition: 1s;
+}
+#progress .progress__animation{
+    animation: pulsePercent 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    width: 0%;
+    height: 100%;
+}
+#progress .progress__animation .bg{
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    animation: AnimationName 10s ease infinite;
+    width: 100%;
+    height: 100%;
+}
+
+#app[data-flow="left"] .head__cell{
+    animation-name: headLeftFlow;
+}
+#app[data-flow="right"] .head__cell{
+    animation-name: headRightFlow;
+}
+#app[data-flow="top"] .head__cell{
+    animation-name: headTopFlow;
+}
+#app[data-flow="bottom"] .head__cell{
+    animation-name: headBottomFlow;
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes pulsePercent {
+    0% {
+        width: 0%;
+        opacity: 1;
+    }
+    100%{
+        width: 100%;
+        opacity: 0;
+    }
+}
+@keyframes endTailFlow {
+	0% { 
+        opacity: 1;
+    }
+	100% {
+        transform: skew( 0.06turn , -14deg) scale(0);
+    }
+}
+
+@keyframes flashInfinite {
+	0% { 
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+	100% {
+        opacity: 0;
+    }
+}
+
+@keyframes clipPathLeftCome{
+    0% { 
+        clip-path: inset(0 100% 0 0);
+        transform: scale(0.2) skew( -0.06turn , -14deg);
+        opacity: 1;
+    }
+	100% { 
+        clip-path: inset(0 0 0 0);
+        transform: scale(1.2) skew( 0turn , 0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes headLeftFlow {
+	0% { clip-path: inset(0 0 0 100%); }
+	100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes headRightFlow {
+	0% { clip-path: inset(0 100% 0 0); }
+	100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes headTopFlow {
+	0% { clip-path: inset(100% 0 0 0); }
+	100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes headBottomFlow {
+	0% { clip-path: inset(0 0 100% 0); }
+	100% { clip-path: inset(0 0 0 0); }
+}
+@keyframes overlayMessageOut {
+	0% {
+        opacity: 1;
+        transform: skew( 0.06turn , -14deg);
+	}
+	100% {
+        opacity: 0;
+        transform: scale(0.6);
+	}
+}
+@keyframes overlayMessage {
+	0% {
+        opacity: 0;
+        transform: scale(0.3);
+	}
+	100% {
+        opacity: 1;
+        transform: scale(1) skew( 0.06turn , -14deg);
+	}
+}
+
+@keyframes nocturneVision {
+	0% {
+        opacity: 0;
+	}
+	100% {
+        opacity: 1;
+	}
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(8, 197, 197, 0.7);
+	}
+
+	70% {
+		transform: scale(1.5);
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
