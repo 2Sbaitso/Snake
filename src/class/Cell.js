@@ -10,12 +10,12 @@ export default class Cell {
         this.initTemplate()
     }
     initTemplate(){
-        var cell = document.createElement("div");
-        cell.style.top = this.posY + "px";
-        cell.style.left = this.posX + "px";
-        cell.style.width = this.size + "px";
-        cell.style.height = this.size + "px";
-        cell.style.backgroundColor = "transparent";
+        var cell = document.createElement('div');
+        cell.style.top = this.posY + 'px';
+        cell.style.left = this.posX + 'px';
+        cell.style.width = this.size + 'px';
+        cell.style.height = this.size + 'px';
+        cell.style.backgroundColor = 'transparent';
         glb.debug ? cell.innerHTML = '<span>' + this.index + '</span>' : null;
         this.template = cell;
     }

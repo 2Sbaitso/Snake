@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 class Snake {
     constructor (){
-        this.xpManager = new XpManager(document.getElementById('progress'));
         this.overlay = new Overlay(document.getElementById('app'))
+        this.xpManager = new XpManager(document.getElementById('progress'), this.overlay);
         this.map = new Map(document.getElementById('app'), glb.cellPerLine, this.overlay, glb.startLevel, this.xpManager);
         this.startGame()
     }

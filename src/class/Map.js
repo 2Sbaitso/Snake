@@ -118,15 +118,6 @@ export default class Map {
     /* INCREASE THE TAIL & UPDATE THE TAIL POS */
     updateTail(aci){
         if(aci === this.getCellIndexByType(glb.cellTypeEnum.apple)){
-            var currentLvl = this.tail - glb.startLevel + 1
-
-            if(getRandomInt(2)){
-                this.overlay.pushMessage(
-                {
-                    elements : ['<mark><em>Level up</em></mark>', '<mark><em>#' + currentLvl.toString() + '</em></mark>'],
-                    duration : 1200
-                })
-            }
             this.xpManager.addXp(getRandomInt(7)+25);
             this.tail++;
         }
